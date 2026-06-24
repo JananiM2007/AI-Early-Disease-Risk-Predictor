@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Heart Disease Prediction</title>
+
+    <style>
+
+        *{
+            margin:0;
+            padding:0;
+            box-sizing:border-box;
+            font-family:Segoe UI;
+        }
+
+        body{
+            background:linear-gradient(135deg,#7f1d1d,#dc2626);
+            min-height:100vh;
+            display:flex;
+            justify-content:center;
+            align-items:center;
+            padding:30px;
+        }
+
+        .container{
+            width:900px;
+            background:white;
+            border-radius:20px;
+            padding:40px;
+            box-shadow:0 10px 30px rgba(0,0,0,0.3);
+        }
+
+        h1{
+            text-align:center;
+            color:#dc2626;
+            margin-bottom:30px;
+        }
+
+        .form-grid{
+            display:grid;
+            grid-template-columns:1fr 1fr;
+            gap:20px;
+        }
+
+        .input-group{
+            display:flex;
+            flex-direction:column;
+        }
+
+        label{
+            font-weight:600;
+            margin-bottom:8px;
+            color:#334155;
+        }
+
+        input, select{
+            padding:12px;
+            border:1px solid #cbd5e1;
+            border-radius:10px;
+            font-size:16px;
+        }
+
+        .btn{
+            margin-top:30px;
+            width:100%;
+            padding:15px;
+            background:#dc2626;
+            color:white;
+            border:none;
+            border-radius:12px;
+            font-size:18px;
+            cursor:pointer;
+        }
+
+        .btn:hover{
+            background:#b91c1c;
+        }
+
+        .back{
+            display:block;
+            text-align:center;
+            margin-top:20px;
+            text-decoration:none;
+            color:#dc2626;
+        }
+
+    </style>
+
+</head>
+
+<body>
+
+<div class="container">
+
+    <h1>❤️ Heart Disease Prediction</h1>
+
+    <form action="/predict_heart" method="POST">
+
+        <div class="form-grid">
+
+            <div class="input-group">
+                <label>Age</label>
+                <input type="number" name="Age" required>
+            </div>
+
+            <div class="input-group">
+                <label>Resting Blood Pressure</label>
+                <input type="number" name="RestingBP" required>
+            </div>
+
+            <div class="input-group">
+                <label>Cholesterol</label>
+                <input type="number" name="Cholesterol" required>
+            </div>
+
+            <div class="input-group">
+                <label>Fasting Blood Sugar (>120)</label>
+                <select name="FastingBS">
+                    <option value="0">No</option>
+                    <option value="1">Yes</option>
+                </select>
+            </div>
+
+            <div class="input-group">
+                <label>Maximum Heart Rate</label>
+                <input type="number" name="MaxHR" required>
+            </div>
+
+            <div class="input-group">
+                <label>Oldpeak</label>
+                <input type="number" step="0.1" name="Oldpeak" required>
+            </div>
+
+            <div class="input-group">
+                <label>Gender</label>
+                <select name="Sex_M">
+                    <option value="1">Male</option>
+                    <option value="0">Female</option>
+                </select>
+            </div>
+
+            <div class="input-group">
+                <label>Chest Pain Type</label>
+                <select id="cp">
+                    <option value="ASY">ASY</option>
+                    <option value="ATA">ATA</option>
+                    <option value="NAP">NAP</option>
+                </select>
+            </div>
+
+            <input type="hidden" name="ChestPainType_ATA" id="ata">
+            <input type="hidden" name="ChestPainType_NAP" id="nap">
+
+            <div class="input-group">
+                <label>Resting ECG ST</label>
+                <select name="RestingECG_ST">
+                    <option value="0">Normal</option>
+                    <option value="1">ST</option>
+                </select>
+            </div>
+
+            <div class="input-group">
+                <label>Exercise Angina</label>
+                <select name="ExerciseAngina_Y">
+                    <option value="0">No</option>
+                    <option value="1">Yes</option>
+                </select>
+            </div>
+
+            <div class="input-group">
+                <label>ST Slope</label>
+                <select id="slope">
+                    <option value="Up">Up</option>
+                    <option value="Flat">Flat</option>
+                </select>
+            </div>
+
+            <input type="hidden" name="ST_Slope_Flat" id="flat">
+            <input type="hidden" name="ST_Slope_Up" id="up">
+
+        </div>
+
+        <button class="btn">
+            Predict Heart Disease Risk
+        </button>
+
+    </form>
+
+    <a href="/" class="back">
+        ← Back to Home
+    </a>
+
+</div>
+
+<script>
+
+    document.querySelector("form").addEventListener("submit", function(){
+
+        let cp = document.getElementById("cp").value;
+
+        document.getElementById("ata").value =
+            cp === "ATA" ? 1 : 0;
+
+        document.getElementById("nap").value =
+            cp === "NAP" ? 1 : 0;
+
+        let slope = document.getElementById("slope").value;
+
+        document.getElementById("flat").value =
+            slope === "Flat" ? 1 : 0;
+
+        document.getElementById("up").value =
+            slope === "Up" ? 1 : 0;
+    });
+
+</script>
+
+</body>
+</html>

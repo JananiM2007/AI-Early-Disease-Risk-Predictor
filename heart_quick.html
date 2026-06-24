@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Quick Heart Assessment</title>
+
+    <style>
+
+        body{
+            font-family:Segoe UI;
+            background:linear-gradient(135deg,#0f172a,#dc2626);
+            display:flex;
+            justify-content:center;
+            align-items:center;
+            min-height:100vh;
+        }
+
+        .container{
+            width:700px;
+            background:white;
+            padding:40px;
+            border-radius:20px;
+            box-shadow:0 10px 30px rgba(0,0,0,0.3);
+        }
+
+        h1{
+            text-align:center;
+            color:#b91c1c;
+            margin-bottom:30px;
+        }
+
+        .input-group{
+            margin-bottom:20px;
+        }
+
+        label{
+            font-weight:600;
+            display:block;
+            margin-bottom:8px;
+        }
+
+        select,input{
+            width:100%;
+            padding:12px;
+            border-radius:10px;
+            border:1px solid #ccc;
+        }
+
+        button{
+            width:100%;
+            padding:15px;
+            background:#dc2626;
+            color:white;
+            border:none;
+            border-radius:10px;
+            font-size:18px;
+            cursor:pointer;
+        }
+
+    </style>
+
+</head>
+
+<body>
+
+<div class="container">
+
+    <h1>❤️ Quick Heart Assessment</h1>
+
+    <form action="/quick_heart_predict" method="POST">
+
+        <div class="input-group">
+            <label>Age</label>
+            <input type="number" name="age" required>
+        </div>
+
+        <div class="input-group">
+            <label>Do you smoke?</label>
+            <select name="smoking">
+                <option value="0">No</option>
+                <option value="1">Yes</option>
+            </select>
+        </div>
+
+        <div class="input-group">
+            <label>Do you have diabetes?</label>
+            <select name="diabetes">
+                <option value="0">No</option>
+                <option value="1">Yes</option>
+            </select>
+        </div>
+
+        <div class="input-group">
+            <label>Do you have high blood pressure?</label>
+            <select name="bp">
+                <option value="0">No</option>
+                <option value="1">Yes</option>
+            </select>
+        </div>
+
+        <div class="input-group">
+            <label>Do you experience chest pain?</label>
+            <select name="pain">
+                <option value="0">No</option>
+                <option value="1">Yes</option>
+            </select>
+        </div>
+
+        <div class="input-group">
+            <label>Exercise Frequency</label>
+            <select name="exercise">
+                <option value="0">Regularly</option>
+                <option value="1">Occasionally</option>
+                <option value="2">Rarely</option>
+            </select>
+        </div>
+
+        <button>
+            Assess Risk
+        </button>
+
+    </form>
+
+</div>
+
+</body>
+</html>

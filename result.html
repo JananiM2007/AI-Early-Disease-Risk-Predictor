@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Prediction Result</title>
+
+    <style>
+
+        *{
+            margin:0;
+            padding:0;
+            box-sizing:border-box;
+            font-family:Segoe UI;
+        }
+
+        body{
+            background:linear-gradient(135deg,#0f172a,#1e3a8a);
+            min-height:100vh;
+            display:flex;
+            justify-content:center;
+            align-items:center;
+            padding:20px;
+        }
+
+        .container{
+            width:700px;
+            background:white;
+            padding:40px;
+            border-radius:25px;
+            text-align:center;
+            box-shadow:0 10px 30px rgba(0,0,0,0.3);
+        }
+
+        h1{
+            color:#1e3a8a;
+            margin-bottom:20px;
+        }
+
+        .risk{
+            font-size:70px;
+            font-weight:bold;
+            margin:20px;
+        }
+
+        .high{
+            color:#dc2626;
+        }
+
+        .medium{
+            color:#f59e0b;
+        }
+
+        .low{
+            color:#16a34a;
+        }
+
+        .status{
+            font-size:28px;
+            margin-bottom:20px;
+            font-weight:bold;
+        }
+
+        .card{
+            background:#f8fafc;
+            padding:20px;
+            border-radius:15px;
+            margin-top:20px;
+            text-align:left;
+        }
+
+        h3{
+            color:#1e293b;
+            margin-bottom:15px;
+        }
+
+        ul{
+            padding-left:20px;
+        }
+
+        li{
+            margin:10px 0;
+        }
+
+        .warning{
+    		margin-top:20px;
+    		background:#fef3c7;
+    		color:#92400e;
+    		padding:15px;
+    		border-radius:10px;
+    		font-size:15px;
+    		font-weight:600;
+	}
+
+        .btn{
+            margin-top:30px;
+            display:inline-block;
+            padding:14px 30px;
+            background:#2563eb;
+            color:white;
+            text-decoration:none;
+            border-radius:10px;
+            font-size:17px;
+            transition:0.3s;
+        }
+
+        .btn:hover{
+            background:#1d4ed8;
+        }
+
+    </style>
+
+</head>
+
+<body>
+
+<div class="container">
+
+    <h1>{{ disease }} Risk Prediction</h1>
+
+    {% if probability >= 70 %}
+        <div class="risk high">
+            {{ probability }}%
+        </div>
+        <div class="status high">
+            HIGH RISK
+        </div>
+
+    {% elif probability >= 40 %}
+        <div class="risk medium">
+            {{ probability }}%
+        </div>
+        <div class="status medium">
+            MODERATE RISK
+        </div>
+
+    {% else %}
+        <div class="risk low">
+            {{ probability }}%
+        </div>
+        <div class="status low">
+            LOW RISK
+        </div>
+
+    {% endif %}
+
+    {% if reasons %}
+
+    <div class="card">
+
+        <h3>Why this prediction?</h3>
+
+        <ul>
+            {% for reason in reasons %}
+                <li>{{ reason }}</li>
+            {% endfor %}
+        </ul>
+
+    </div>
+
+    {% endif %}
+    
+    {% if bmi %}
+
+    <div class="card">
+
+        <h3>Your BMI</h3>
+
+        <p style="font-size:28px; font-weight:bold; color:#2563eb;">
+        {{ bmi }}
+        </p>
+
+    </div>
+
+    {% endif %}
+    <div class="card">
+
+        <h3>Recommendations</h3>
+
+        <ul>
+	    
+
+            {% if disease == "Diabetes" %}
+                <li>Exercise regularly.</li>
+                <li>Reduce sugar intake.</li>
+                <li>Maintain healthy weight.</li>
+                <li>Monitor blood glucose.</li>
+
+            {% elif disease == "Heart Disease" %}
+                <li>Exercise daily.</li>
+                <li>Avoid smoking.</li>
+                <li>Reduce cholesterol intake.</li>
+                <li>Monitor blood pressure.</li>
+
+            {% elif disease == "Kidney Disease" %}
+                <li>Drink sufficient water.</li>
+                <li>Reduce sodium intake.</li>
+                <li>Monitor kidney function.</li>
+                <li>Consult a physician.</li>
+
+            {% endif %}
+
+        </ul>
+
+    </div>
+    {% if probability >= 70 %}
+
+    <div class="warning">
+        ⚠ Consult a healthcare professional for further evaluation.
+    </div>
+
+    {% endif %}
+    <div class="warning">
+        ⚠ This application provides only an early risk assessment and is not a medical diagnosis. Please consult a healthcare professional for proper medical advice.
+    </div>
+
+    <a href="/" class="btn">
+        Home
+    </a>
+
+</div>
+
+</body>
+</html>

@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Diabetes Risk Prediction</title>
+
+    <style>
+
+        *{
+            margin:0;
+            padding:0;
+            box-sizing:border-box;
+            font-family:Segoe UI;
+        }
+
+        body{
+            background:linear-gradient(135deg,#0f172a,#2563eb);
+            min-height:100vh;
+            display:flex;
+            justify-content:center;
+            align-items:center;
+            padding:30px;
+        }
+
+        .container{
+            width:900px;
+            background:white;
+            border-radius:20px;
+            padding:40px;
+            box-shadow:0 10px 30px rgba(0,0,0,0.3);
+        }
+
+        h1{
+            text-align:center;
+            color:#1e3a8a;
+            margin-bottom:30px;
+        }
+
+        .form-grid{
+            display:grid;
+            grid-template-columns:1fr 1fr;
+            gap:20px;
+        }
+
+        .input-group{
+            display:flex;
+            flex-direction:column;
+        }
+
+        label{
+            font-weight:600;
+            margin-bottom:8px;
+            color:#334155;
+        }
+
+        input, select{
+            padding:12px;
+            border:1px solid #cbd5e1;
+            border-radius:10px;
+            font-size:16px;
+        }
+
+        .btn{
+            margin-top:30px;
+            width:100%;
+            padding:15px;
+            background:#2563eb;
+            color:white;
+            border:none;
+            border-radius:12px;
+            font-size:18px;
+            cursor:pointer;
+        }
+
+        .btn:hover{
+            background:#1d4ed8;
+        }
+
+        .back{
+            text-decoration:none;
+            color:#2563eb;
+            display:block;
+            margin-top:20px;
+            text-align:center;
+        }
+
+    </style>
+
+</head>
+
+<body>
+
+<div class="container">
+
+    <h1>🩸 Diabetes Risk Assessment</h1>
+
+    <form action="/predict_diabetes" method="POST">
+
+        <div class="form-grid">
+
+            <div class="input-group">
+                <label>Age</label>
+                <input type="number" name="Age" required>
+            </div>
+
+            <div class="input-group">
+                <label>Pregnancies</label>
+                <input type="number" name="Pregnancies" required>
+            </div>
+
+            <div class="input-group">
+                <label>Height (cm)</label>
+                <input type="number" step="0.1" name="Height" required>
+            </div>
+
+            <div class="input-group">
+                <label>Weight (kg)</label>
+                <input type="number" step="0.1" name="Weight" required>
+            </div>
+
+            <div class="input-group">
+                <label>Blood Glucose Level</label>
+                <input type="number" name="Glucose" required>
+            </div>
+
+            <div class="input-group">
+                <label>Blood Pressure</label>
+                <input type="number" name="BloodPressure" required>
+            </div>
+
+            <div class="input-group">
+                <label>Skin Thickness</label>
+                <input type="number" name="SkinThickness" required>
+            </div>
+
+            <div class="input-group">
+                <label>Insulin Level</label>
+                <input type="number" name="Insulin" required>
+            </div>
+
+            <div class="input-group">
+                <label>Family History of Diabetes</label>
+                <select name="FamilyHistory">
+                    <option value="0">No</option>
+                    <option value="1">Yes</option>
+                </select>
+            </div>
+
+        </div>
+
+        <button class="btn">
+            Predict Diabetes Risk
+        </button>
+
+    </form>
+
+    <a href="/" class="back">
+        ← Back to Home
+    </a>
+
+</div>
+
+</body>
+</html>

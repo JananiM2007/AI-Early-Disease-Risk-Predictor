@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Kidney Disease Prediction</title>
+
+    <style>
+
+        *{
+            margin:0;
+            padding:0;
+            box-sizing:border-box;
+            font-family:Segoe UI;
+        }
+
+        body{
+            background:linear-gradient(135deg,#14532d,#16a34a);
+            min-height:100vh;
+            display:flex;
+            justify-content:center;
+            align-items:center;
+            padding:30px;
+        }
+
+        .container{
+            width:950px;
+            background:white;
+            border-radius:20px;
+            padding:40px;
+            box-shadow:0 10px 30px rgba(0,0,0,0.3);
+        }
+
+        h1{
+            text-align:center;
+            color:#15803d;
+            margin-bottom:30px;
+        }
+
+        .form-grid{
+            display:grid;
+            grid-template-columns:1fr 1fr;
+            gap:20px;
+        }
+
+        .input-group{
+            display:flex;
+            flex-direction:column;
+        }
+
+        label{
+            font-weight:600;
+            margin-bottom:8px;
+            color:#334155;
+        }
+
+        input, select{
+            padding:12px;
+            border:1px solid #cbd5e1;
+            border-radius:10px;
+            font-size:16px;
+        }
+
+        .btn{
+            margin-top:30px;
+            width:100%;
+            padding:15px;
+            background:#16a34a;
+            color:white;
+            border:none;
+            border-radius:12px;
+            font-size:18px;
+            cursor:pointer;
+        }
+
+        .btn:hover{
+            background:#15803d;
+        }
+
+        .back{
+            display:block;
+            text-align:center;
+            margin-top:20px;
+            text-decoration:none;
+            color:#15803d;
+        }
+
+    </style>
+
+</head>
+
+<body>
+
+<div class="container">
+
+    <h1>🩺 Kidney Disease Prediction</h1>
+
+    <form action="/predict_kidney" method="POST">
+
+        <div class="form-grid">
+
+            <div class="input-group">
+                <label>Age</label>
+                <input type="number" name="age" required>
+            </div>
+
+            <div class="input-group">
+                <label>Blood Pressure</label>
+                <input type="number" name="bp" required>
+            </div>
+
+            <div class="input-group">
+                <label>Specific Gravity</label>
+                <input type="number" step="0.001" name="sg" required>
+            </div>
+
+            <div class="input-group">
+                <label>Albumin Level</label>
+                <input type="number" name="al" required>
+            </div>
+
+            <div class="input-group">
+                <label>Sugar Level</label>
+                <input type="number" name="su" required>
+            </div>
+
+            <div class="input-group">
+                <label>Red Blood Cells Normal?</label>
+                <select name="rbc">
+                    <option value="1">Yes</option>
+                    <option value="0">No</option>
+                </select>
+            </div>
+
+            <div class="input-group">
+                <label>Pus Cells Normal?</label>
+                <select name="pc">
+                    <option value="1">Yes</option>
+                    <option value="0">No</option>
+                </select>
+            </div>
+
+            <div class="input-group">
+                <label>Pus Cell Clumps Present?</label>
+                <select name="pcc">
+                    <option value="1">Yes</option>
+                    <option value="0">No</option>
+                </select>
+            </div>
+
+            <div class="input-group">
+                <label>Bacteria Present?</label>
+                <select name="ba">
+                    <option value="1">Yes</option>
+                    <option value="0">No</option>
+                </select>
+            </div>
+
+            <div class="input-group">
+                <label>Blood Glucose Random</label>
+                <input type="number" name="bgr" required>
+            </div>
+
+            <div class="input-group">
+                <label>Blood Urea</label>
+                <input type="number" step="0.1" name="bu" required>
+            </div>
+
+            <div class="input-group">
+                <label>Serum Creatinine</label>
+                <input type="number" step="0.1" name="sc" required>
+            </div>
+
+            <div class="input-group">
+                <label>Sodium</label>
+                <input type="number" step="0.1" name="sod" required>
+            </div>
+
+            <div class="input-group">
+                <label>Potassium</label>
+                <input type="number" step="0.1" name="pot" required>
+            </div>
+
+            <div class="input-group">
+                <label>Hemoglobin</label>
+                <input type="number" step="0.1" name="hemo" required>
+            </div>
+
+            <div class="input-group">
+                <label>Packed Cell Volume</label>
+                <input type="number" name="pcv" required>
+            </div>
+
+            <div class="input-group">
+                <label>White Blood Cell Count</label>
+                <input type="number" name="wc" required>
+            </div>
+
+            <div class="input-group">
+                <label>Red Blood Cell Count</label>
+                <input type="number" step="0.1" name="rc" required>
+            </div>
+
+            <div class="input-group">
+                <label>Hypertension</label>
+                <select name="htn">
+                    <option value="1">Yes</option>
+                    <option value="0">No</option>
+                </select>
+            </div>
+
+            <div class="input-group">
+                <label>Diabetes Mellitus</label>
+                <select name="dm">
+                    <option value="1">Yes</option>
+                    <option value="0">No</option>
+                </select>
+            </div>
+
+            <div class="input-group">
+                <label>Coronary Artery Disease</label>
+                <select name="cad">
+                    <option value="1">Yes</option>
+                    <option value="0">No</option>
+                </select>
+            </div>
+
+            <div class="input-group">
+                <label>Appetite Good?</label>
+                <select name="appet">
+                    <option value="1">Yes</option>
+                    <option value="0">No</option>
+                </select>
+            </div>
+
+            <div class="input-group">
+                <label>Pedal Edema</label>
+                <select name="pe">
+                    <option value="1">Yes</option>
+                    <option value="0">No</option>
+                </select>
+            </div>
+
+            <div class="input-group">
+                <label>Anemia</label>
+                <select name="ane">
+                    <option value="1">Yes</option>
+                    <option value="0">No</option>
+                </select>
+            </div>
+
+        </div>
+
+        <button class="btn">
+            Predict Kidney Disease Risk
+        </button>
+
+    </form>
+
+    <a href="/" class="back">
+        ← Back to Home
+    </a>
+
+</div>
+
+</body>
+</html>
